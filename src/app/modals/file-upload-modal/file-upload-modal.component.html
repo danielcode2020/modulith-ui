@@ -1,0 +1,19 @@
+<div class="modal">
+  <div class="modal-content">
+    <h2>Upload File</h2>
+    <form (ngSubmit)="onSubmit()" #uploadForm="ngForm">
+      <div>
+        <label for="fileInput">Choose a file:</label>
+        <input type="file" id="fileInput" (change)="onFileSelected($event)" required />
+      </div>
+      <div *ngIf="selectedFile">
+        <p><strong>Filename:</strong> {{ selectedFile.name }}</p>
+        <p><strong>Content Type:</strong> {{ selectedFile.type }}</p>
+      </div>
+      <div class="modal-actions">
+        <button type="button" (click)="closeModal()">Cancel</button>
+        <button type="submit" [disabled]="!selectedFile">Upload</button>
+      </div>
+    </form>
+  </div>
+</div>
