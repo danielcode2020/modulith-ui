@@ -1,6 +1,9 @@
 <p>home page works!</p>
 <button type="submit" (click)="logout()" class="logout">Logout</button>
 <button (click)="openModal()">Upload File</button>
-<app-file-upload-modal *ngIf="isModalOpen" (close)="isModalOpen = false"></app-file-upload-modal>
 
-
+<!-- Modal -->
+<app-file-upload-modal
+        *ngIf="isModalOpen()"
+        (close)="closeModal()">
+</app-file-upload-modal>
