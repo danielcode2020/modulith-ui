@@ -1,0 +1,40 @@
+<br/>
+
+<div>
+  @if (authenticationError()) {
+    <div>
+      <strong style="background:red;">Autentificarea nu a reușit!</strong>. Va rugăm să vă verificați credențialele și să încercați din nou.
+
+    </div>
+  }
+  <form
+    (ngSubmit)="authenticate()"
+    [formGroup]="loginForm">
+    <br/>
+    <div>
+      <label for="username">Username</label>
+      <input
+        type="text"
+        id="username"
+        placeholder="username"
+        formControlName="username"
+      >
+    </div>
+    <br/>
+
+    <div>
+      <label for="password" >Password</label>
+      <input
+        type="password"
+        id="password"
+        placeholder="password"
+        formControlName="password"
+      />
+    </div>
+    <button type="submit">Login</button>
+  </form>
+  <br/>
+  <a [routerLink]="['/']"> Back </a>
+
+
+</div>
