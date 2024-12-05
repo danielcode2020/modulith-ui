@@ -28,7 +28,7 @@ export class AuthService{
   logout(){
     this.cookieService.deleteAll();
     this.token = null;
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 
   private saveToken(jwtToken: JwtToken) : void {

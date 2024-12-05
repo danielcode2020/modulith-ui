@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
+import {AuthService} from '../../services/auth/auth.service';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-home-page',
@@ -8,5 +10,9 @@ import { Component } from '@angular/core';
   styleUrl: './home-page.component.css'
 })
 export class HomePageComponent {
+  authService = inject(AuthService);
 
+  logout():void{
+    this.authService.logout();
+  }
 }
