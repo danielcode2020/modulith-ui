@@ -18,6 +18,7 @@ import {FileListComponent} from '../../components/file-list/file-list.component'
 export class HomePageComponent {
   authService = inject(AuthService);
   isModalOpen = signal(false);
+  refreshListEvent! : Event;
 
   logout(): void {
     this.authService.logout();
@@ -27,8 +28,13 @@ export class HomePageComponent {
     this.isModalOpen.set(true);
   }
 
-  closeModal(): void {
+  closeModal(event: Event): void {
     console.log("received close modal event");
+    this.refreshListEvent = event;
+    this.isModalOpen.set(false);
+  }
+
+  cancelModal() {
     this.isModalOpen.set(false);
   }
 }

@@ -1,13 +1,15 @@
 <p>home page works!</p>
-<button type="submit" (click)="logout()" class="logout">Logout</button>
+<button (click)="logout()" class="logout" type="submit">Logout</button>
 <button (click)="openModal()">Upload File</button>
 
 <!-- Modal -->
 <app-file-upload-modal
-        *ngIf="isModalOpen()"
-        (close)="closeModal()">
+        (close)="closeModal($event)"
+        (cancel)="cancelModal()"
+        *ngIf="isModalOpen()">
 </app-file-upload-modal>
 
-<app-file-list>
+<app-file-list
+        [refreshListEvent]="refreshListEvent">
 
 </app-file-list>

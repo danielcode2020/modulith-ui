@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {FileService} from '../../services/document/file-service.services';
 import {DatePipe, NgForOf} from '@angular/common';
 import {HttpResponse} from '@angular/common/http';
@@ -22,6 +22,14 @@ export class FileListComponent {
   page = 0;
   size = 10;
   totalCount = 0;
+
+  @Input()
+  set refreshListEvent(event: Event) {
+    console.log("received refreshEvent")
+    if (event) {
+      this.loadFiles();
+    }
+  }
 
   constructor(private fileService: FileService) {}
 

@@ -15,9 +15,8 @@ import { NgIf } from '@angular/common';
 })
 export class FileUploadModalComponent {
   selectedFile: File | null = null;
-
-  @Output() close = new EventEmitter<void>();
-
+  @Output() close = new EventEmitter<Event>();
+  @Output() cancel = new EventEmitter<void>();
   constructor(private http: HttpClient) {}
 
   onFileSelected(event: Event): void {
@@ -27,7 +26,7 @@ export class FileUploadModalComponent {
     }
   }
 
-  onSubmit(): void {
+  onSubmit(event: Event): void {
     if (this.selectedFile) {
       const reader = new FileReader();
       reader.onload = () => {
@@ -40,7 +39,7 @@ export class FileUploadModalComponent {
         this.http.post<void>('http://localhost:8080/api/upload-single', uploadDto).subscribe({
           next: () => {
             alert('File uploaded successfully');
-            this.closeModal(); // Close the modal after successful upload
+            this.closeModal(event); // Close the modal after successful upload
           },
           error: (err) => {
             console.error('Upload failed', err);
@@ -52,8 +51,13 @@ export class FileUploadModalComponent {
     }
   }
 
-  closeModal(): void {
+  closeModal(event: Event): void {
     console.log("send event to close the modal to parent")
-    this.close.emit();
+    this.close.emit(event);
+  }
+
+  cancelModal(): void {
+    console.log("send event cancel modal")
+    this.cancel.emit();
   }
 }
