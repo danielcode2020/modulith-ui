@@ -1,0 +1,25 @@
+<div class="file-list">
+  <h2>My Files</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Size (bytes)</th>
+      <th>Created Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let file of files">
+      <td>{{ file.name }}</td>
+      <td>{{ file.fileSize }}</td>
+      <td>{{ file.createdDate | date: 'medium' }}</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <button (click)="previousPage()" [disabled]="page === 0">Previous</button>
+    <span>Page {{ page + 1 }}</span>
+    <button (click)="nextPage()" [disabled]="(page + 1) * size >= totalCount">Next</button>
+  </div>
+</div>
