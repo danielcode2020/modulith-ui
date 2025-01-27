@@ -44,7 +44,7 @@ export class FileUploadModalComponent {
           },
           error: (err) => {
             console.error('Upload failed', err);
-            alert('Failed to upload file');
+            alert(err.error.title);
           }
         });
       };
